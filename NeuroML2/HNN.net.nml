@@ -1,0 +1,726 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.1.xsd" id="HNN">
+    <notes>NeuroML 2 file exported from NetPyNE v0.9.8</notes>
+    <ionChannelHH id="leak_hh" type="ionChannelPassive" conductance="10pS">
+        <notes>Single ion channel in NeuroML2 format: passive channel providing a leak conductance </notes>
+    </ionChannelHH>
+    <ionChannelHH id="na_hh" species="na" conductance="10pS">
+        <notes>Single ion channel in NeuroML2 format: standard Sodium channel from the Hodgkin Huxley model</notes>
+        <gateHHrates id="m" instances="3">
+            <forwardRate type="HHExpLinearRate" rate="1per_ms" midpoint="-40mV" scale="10mV"/>
+            <reverseRate type="HHExpRate" rate="4per_ms" midpoint="-65mV" scale="-18mV"/>
+        </gateHHrates>
+        <gateHHrates id="h" instances="1">
+            <forwardRate type="HHExpRate" rate="0.07per_ms" midpoint="-65mV" scale="-20mV"/>
+            <reverseRate type="HHSigmoidRate" rate="1per_ms" midpoint="-35mV" scale="10mV"/>
+        </gateHHrates>
+    </ionChannelHH>
+    <ionChannelHH id="k_hh" species="k" conductance="10pS">
+        <notes>Single ion channel in NeuroML2 format: standard Potassium channel from the Hodgkin Huxley model</notes>
+        <gateHHrates id="n" instances="4">
+            <forwardRate type="HHExpLinearRate" rate="0.1per_ms" midpoint="-55mV" scale="10mV"/>
+            <reverseRate type="HHExpRate" rate="0.125per_ms" midpoint="-65mV" scale="-80mV"/>
+        </gateHHrates>
+    </ionChannelHH>
+    <expTwoSynapse id="L2Pyr_AMPA" gbase="1uS" erev="0.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_NMDA" gbase="1uS" erev="0.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
+    <expTwoSynapse id="L2Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
+    <expTwoSynapse id="L5Pyr_AMPA" gbase="1uS" erev="0.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_NMDA" gbase="1uS" erev="0.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
+    <expTwoSynapse id="L5Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
+    <expTwoSynapse id="AMPA" gbase="1uS" erev="0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="NMDA" gbase="1uS" erev="0mV" tauDecay="20ms" tauRise="1ms"/>
+    <expTwoSynapse id="GABAA" gbase="1uS" erev="-80mV" tauDecay="5ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="GABAB" gbase="1uS" erev="-80mV" tauDecay="20ms" tauRise="1ms"/>
+    <cell id="CELL_HH_simple_L2Basket">
+        <notes>Cell exported from NetPyNE:
+{'secs': {'soma': {'geom': {'L': 39.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 20.0, 'nseg': 1}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'hh2': {'el': -54.3, 'gkbar': 0.036, 'gl': 0.0003, 'gnabar': 0.12}}, 'topol': {}, 'vinit': -64.9737}}, 'conds': {'cellType': 'L2Basket', 'cellModel': 'HH_simple'}}</notes>
+        <morphology id="morph_CELL_HH_simple_L2Basket">
+            <segment id="0" name="soma">
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="20.0"/>
+                <distal x="0.000000e+00" y="3.900000e+01" z="0.000000e+00" diameter="20.0"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="soma_SECTION">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="soma_group">
+                <include segmentGroup="soma_SECTION"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys_CELL_HH_simple_L2Basket">
+            <membraneProperties>
+                <channelDensity id="leak_soma_group" ionChannel="leak_hh" condDensity="0.0003 S_per_cm2" erev="-54.3 mV" ion="non_specific"/>
+                <channelDensity id="k_soma_group" ionChannel="k_hh" condDensity="0.036 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_soma_group" ionChannel="na_hh" condDensity="0.12 S_per_cm2" erev="50 mV" ion="na"/>
+                <spikeThresh value="10 mV"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="soma_group"/>
+                <initMembPotential value="-64.9737 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity value="200.0 ohm_cm" segmentGroup="soma_group"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+    <cell id="CELL_HH_reduced_L2Pyr">
+        <notes>Cell exported from NetPyNE:
+{'secLists': {'apical': ['apical_trunk', 'apical_1', 'apical_tuft', 'apical_oblique'], 'basal': ['basal_1', 'basal_2', 'basal_3']}, 'secs': {'soma': {'geom': {'L': 22.1, 'Ra': 200.0, 'cm': 0.6195, 'diam': 23.4, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 23.4], [0.0, 22.1, 0.0, 23.4]]}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.18}, 'km': {'gbar': 250.0}}, 'topol': {}, 'vinit': -71.46}, 'apical_trunk': {'geom': {'L': 59.5, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.25, 'nseg': 1, 'pt3d': [[0.0, 13.0, 0.0, 4.25], [0.0, 72.5, 0.0, 4.25]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_1': {'geom': {'L': 306.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.08, 'nseg': 7, 'pt3d': [[0.0, 48.0, 0.0, 4.08], [0.0, 354.0, 0.0, 4.08]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_oblique': {'geom': {'L': 340.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 3.91, 'nseg': 7, 'pt3d': [[0.0, 48.0, 0.0, 3.91], [-340.0, 48.0, 0.0, 3.91]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_tuft': {'geom': {'L': 238.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 3.4, 'nseg': 5, 'pt3d': [[0.0, 228.0, 0.0, 3.4], [0.0, 466.0, 0.0, 3.4]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_1': {'geom': {'L': 85.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.25, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 4.25], [0.0, -85.0, 0.0, 4.25]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 0.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_2': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 2.72, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 2.72], [-180.3122292025696, -230.3122292025696, 0.0, 2.72]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_3': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 2.72, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 2.72], [180.3122292025696, -230.3122292025696, 0.0, 2.72]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}}, 'conds': {'cellType': 'L2Pyr', 'cellModel': 'HH_reduced'}}</notes>
+        <morphology id="morph_CELL_HH_reduced_L2Pyr">
+            <segment id="0" name="soma">
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="23.4"/>
+                <distal x="0.000000e+00" y="2.210000e+01" z="0.000000e+00" diameter="23.4"/>
+            </segment>
+            <segment id="1" name="apical_trunk">
+                <parent segment="0"/>
+                <proximal x="0.000000e+00" y="1.300000e+01" z="0.000000e+00" diameter="4.25"/>
+                <distal x="0.000000e+00" y="7.250000e+01" z="0.000000e+00" diameter="4.25"/>
+            </segment>
+            <segment id="2" name="apical_1">
+                <parent segment="1"/>
+                <proximal x="0.000000e+00" y="4.800000e+01" z="0.000000e+00" diameter="4.08"/>
+                <distal x="0.000000e+00" y="3.540000e+02" z="0.000000e+00" diameter="4.08"/>
+            </segment>
+            <segment id="3" name="apical_oblique">
+                <parent segment="1"/>
+                <proximal x="0.000000e+00" y="4.800000e+01" z="0.000000e+00" diameter="3.91"/>
+                <distal x="-3.400000e+02" y="4.800000e+01" z="0.000000e+00" diameter="3.91"/>
+            </segment>
+            <segment id="4" name="apical_tuft">
+                <parent segment="2"/>
+                <proximal x="0.000000e+00" y="2.280000e+02" z="0.000000e+00" diameter="3.4"/>
+                <distal x="0.000000e+00" y="4.660000e+02" z="0.000000e+00" diameter="3.4"/>
+            </segment>
+            <segment id="5" name="basal_1">
+                <parent segment="0"/>
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="4.25"/>
+                <distal x="0.000000e+00" y="-8.500000e+01" z="0.000000e+00" diameter="4.25"/>
+            </segment>
+            <segment id="6" name="basal_2">
+                <parent segment="5"/>
+                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="2.72"/>
+                <distal x="-1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="2.72"/>
+            </segment>
+            <segment id="7" name="basal_3">
+                <parent segment="5"/>
+                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="2.72"/>
+                <distal x="1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="2.72"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="soma_SECTION">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="soma_group">
+                <include segmentGroup="soma_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_trunk_SECTION">
+                <member segment="1"/>
+            </segmentGroup>
+            <segmentGroup id="apical_trunk_group">
+                <include segmentGroup="apical_trunk_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_1_SECTION">
+                <member segment="2"/>
+            </segmentGroup>
+            <segmentGroup id="apical_1_group">
+                <include segmentGroup="apical_1_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_oblique_SECTION">
+                <member segment="3"/>
+            </segmentGroup>
+            <segmentGroup id="apical_oblique_group">
+                <include segmentGroup="apical_oblique_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_tuft_SECTION">
+                <member segment="4"/>
+            </segmentGroup>
+            <segmentGroup id="apical_tuft_group">
+                <include segmentGroup="apical_tuft_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_1_SECTION">
+                <member segment="5"/>
+            </segmentGroup>
+            <segmentGroup id="basal_1_group">
+                <include segmentGroup="basal_1_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_2_SECTION">
+                <member segment="6"/>
+            </segmentGroup>
+            <segmentGroup id="basal_2_group">
+                <include segmentGroup="basal_2_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_3_SECTION">
+                <member segment="7"/>
+            </segmentGroup>
+            <segmentGroup id="basal_3_group">
+                <include segmentGroup="basal_3_SECTION"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys_CELL_HH_reduced_L2Pyr">
+            <membraneProperties>
+                <channelDensity id="leak_soma_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_soma_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_soma_group" ionChannel="na_hh" condDensity="0.18 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_trunk_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_trunk_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_trunk_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_1_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_oblique_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_oblique_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_oblique_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_tuft_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_tuft_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_tuft_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_1_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_2_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_2_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_2_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_3_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_3_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_3_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="soma_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_trunk_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_1_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_oblique_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_tuft_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_1_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_2_group"/>
+                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_3_group"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+                <initMembPotential value="-71.46 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity value="200.0 ohm_cm" segmentGroup="soma_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_trunk_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_1_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_oblique_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_tuft_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_1_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_2_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_3_group"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+    <cell id="CELL_HH_simple_L5Basket">
+        <notes>Cell exported from NetPyNE:
+{'secs': {'soma': {'geom': {'L': 39.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 20.0, 'nseg': 1}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'hh2': {'el': -54.3, 'gkbar': 0.036, 'gl': 0.0003, 'gnabar': 0.12}}, 'topol': {}, 'vinit': -64.9737}}, 'conds': {'cellType': 'L5Basket', 'cellModel': 'HH_simple'}}</notes>
+        <morphology id="morph_CELL_HH_simple_L5Basket">
+            <segment id="0" name="soma">
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="20.0"/>
+                <distal x="0.000000e+00" y="3.900000e+01" z="0.000000e+00" diameter="20.0"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="soma_SECTION">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="soma_group">
+                <include segmentGroup="soma_SECTION"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys_CELL_HH_simple_L5Basket">
+            <membraneProperties>
+                <channelDensity id="leak_soma_group" ionChannel="leak_hh" condDensity="0.0003 S_per_cm2" erev="-54.3 mV" ion="non_specific"/>
+                <channelDensity id="k_soma_group" ionChannel="k_hh" condDensity="0.036 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_soma_group" ionChannel="na_hh" condDensity="0.12 S_per_cm2" erev="50 mV" ion="na"/>
+                <spikeThresh value="10 mV"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="soma_group"/>
+                <initMembPotential value="-64.9737 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity value="200.0 ohm_cm" segmentGroup="soma_group"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+    <cell id="CELL_HH_reduced_L5Pyr">
+        <notes>Cell exported from NetPyNE:
+{'secLists': {'apical': ['apical_trunk', 'apical_1', 'apical_2', 'apical_tuft', 'apical_oblique'], 'basal': ['basal_1', 'basal_2', 'basal_3']}, 'secs': {'soma': {'geom': {'L': 39.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 28.9, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 28.9], [0.0, 39.0, 0.0, 28.9]]}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': 1e-06}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.16}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'topol': {}, 'vinit': -72.0}, 'apical_trunk': {'geom': {'L': 102.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 10.2, 'nseg': 3, 'pt3d': [[0.0, 23.0, 0.0, 10.2], [0.0, 125.0, 0.0, 10.2]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.1829366e-06, 1.3099645e-06, 1.450633e-06]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -72.0}, 'apical_1': {'geom': {'L': 680.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 7.48, 'nseg': 13, 'pt3d': [[0.0, 83.0, 0.0, 7.48], [0.0, 763.0, 0.0, 7.48]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.6511327e-06, 1.9316694e-06, 2.2598709e-06, 2.6438357e-06, 3.0930382e-06, 3.6185628e-06, 4.2333769e-06, 4.9526514e-06, 5.7941347e-06, 6.7785908e-06, 7.9303114e-06, 9.2777159e-06, 1.0854052e-05]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -71.32}, 'apical_2': {'geom': {'L': 680.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 4.93, 'nseg': 13, 'pt3d': [[0.0, 483.0, 0.0, 4.93], [0.0, 1163.0, 0.0, 4.93]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_1', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.2698216e-05, 1.4855715e-05, 1.7379784e-05, 2.0332707e-05, 2.3787348e-05, 2.7828952e-05, 3.2557247e-05, 3.8088907e-05, 4.4560426e-05, 5.2131493e-05, 6.0988926e-05, 7.1351287e-05, 8.3474272e-05]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -69.08}, 'apical_oblique': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 5.1, 'nseg': 5, 'pt3d': [[0.0, 83.0, 0.0, 5.1], [-255.0, 83.0, 0.0, 5.1]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.6478971e-06, 1.9203357e-06, 2.2378151e-06, 2.6077819e-06, 3.0389133e-06]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -72.0}, 'apical_tuft': {'geom': {'L': 425.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 3.4, 'nseg': 9, 'pt3d': [[0.0, 883.0, 0.0, 3.4], [0.0, 1308.0, 0.0, 3.4]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_2', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [9.6914906e-05, 0.00011166463, 0.00012865915, 0.00014824011, 0.00017080115, 0.0001967958, 0.00022674665, 0.0002612558, 0.00030101698]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -67.3}, 'basal_1': {'geom': {'L': 85.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 6.8, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 6.8], [0.0, -85.0, 0.0, 6.8]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 0.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.1359849e-06]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -72.0}, 'basal_2': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 8.5, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 8.5], [-180.3122292025696, -230.3122292025696, 0.0, 8.5]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.3930561e-06, 1.6233631e-06, 1.8917456e-06, 2.2044984e-06, 2.5689571e-06]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -72.0}, 'basal_3': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 8.5, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 8.5], [180.3122292025696, -230.3122292025696, 0.0, 8.5]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'ca': {'e': 132.4579341637009, 'i': 5e-05, 'o': 2.0}, 'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'ar_hnn': {'gbar': [1.3930561e-06, 1.6233631e-06, 1.8917456e-06, 2.2044984e-06, 2.5689571e-06]}, 'ca_hnn': {'gbar': 60.0}, 'cad': {'taur': 20.0}, 'cat_hnn': {'gbar': 0.0002}, 'dipole': {}, 'hh2': {'el': -71.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.14}, 'kca': {'gbar': 0.0002}, 'km': {'gbar': 200.0}}, 'vinit': -72.0}}, 'conds': {'cellType': 'L5Pyr', 'cellModel': 'HH_reduced'}}</notes>
+        <morphology id="morph_CELL_HH_reduced_L5Pyr">
+            <segment id="0" name="soma">
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="28.9"/>
+                <distal x="0.000000e+00" y="3.900000e+01" z="0.000000e+00" diameter="28.9"/>
+            </segment>
+            <segment id="1" name="apical_trunk">
+                <parent segment="0"/>
+                <proximal x="0.000000e+00" y="2.300000e+01" z="0.000000e+00" diameter="10.2"/>
+                <distal x="0.000000e+00" y="1.250000e+02" z="0.000000e+00" diameter="10.2"/>
+            </segment>
+            <segment id="2" name="apical_1">
+                <parent segment="1"/>
+                <proximal x="0.000000e+00" y="8.300000e+01" z="0.000000e+00" diameter="7.48"/>
+                <distal x="0.000000e+00" y="7.630000e+02" z="0.000000e+00" diameter="7.48"/>
+            </segment>
+            <segment id="3" name="apical_2">
+                <parent segment="2"/>
+                <proximal x="0.000000e+00" y="4.830000e+02" z="0.000000e+00" diameter="4.93"/>
+                <distal x="0.000000e+00" y="1.163000e+03" z="0.000000e+00" diameter="4.93"/>
+            </segment>
+            <segment id="4" name="apical_oblique">
+                <parent segment="1"/>
+                <proximal x="0.000000e+00" y="8.300000e+01" z="0.000000e+00" diameter="5.1"/>
+                <distal x="-2.550000e+02" y="8.300000e+01" z="0.000000e+00" diameter="5.1"/>
+            </segment>
+            <segment id="5" name="apical_tuft">
+                <parent segment="3"/>
+                <proximal x="0.000000e+00" y="8.830000e+02" z="0.000000e+00" diameter="3.4"/>
+                <distal x="0.000000e+00" y="1.308000e+03" z="0.000000e+00" diameter="3.4"/>
+            </segment>
+            <segment id="6" name="basal_1">
+                <parent segment="0"/>
+                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="6.8"/>
+                <distal x="0.000000e+00" y="-8.500000e+01" z="0.000000e+00" diameter="6.8"/>
+            </segment>
+            <segment id="7" name="basal_2">
+                <parent segment="6"/>
+                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="8.5"/>
+                <distal x="-1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="8.5"/>
+            </segment>
+            <segment id="8" name="basal_3">
+                <parent segment="6"/>
+                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="8.5"/>
+                <distal x="1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="8.5"/>
+            </segment>
+            <segmentGroup neuroLexId="sao864921383" id="soma_SECTION">
+                <member segment="0"/>
+            </segmentGroup>
+            <segmentGroup id="soma_group">
+                <include segmentGroup="soma_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_trunk_SECTION">
+                <member segment="1"/>
+            </segmentGroup>
+            <segmentGroup id="apical_trunk_group">
+                <include segmentGroup="apical_trunk_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_1_SECTION">
+                <member segment="2"/>
+            </segmentGroup>
+            <segmentGroup id="apical_1_group">
+                <include segmentGroup="apical_1_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_2_SECTION">
+                <member segment="3"/>
+            </segmentGroup>
+            <segmentGroup id="apical_2_group">
+                <include segmentGroup="apical_2_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_oblique_SECTION">
+                <member segment="4"/>
+            </segmentGroup>
+            <segmentGroup id="apical_oblique_group">
+                <include segmentGroup="apical_oblique_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="apical_tuft_SECTION">
+                <member segment="5"/>
+            </segmentGroup>
+            <segmentGroup id="apical_tuft_group">
+                <include segmentGroup="apical_tuft_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_1_SECTION">
+                <member segment="6"/>
+            </segmentGroup>
+            <segmentGroup id="basal_1_group">
+                <include segmentGroup="basal_1_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_2_SECTION">
+                <member segment="7"/>
+            </segmentGroup>
+            <segmentGroup id="basal_2_group">
+                <include segmentGroup="basal_2_SECTION"/>
+            </segmentGroup>
+            <segmentGroup neuroLexId="sao864921383" id="basal_3_SECTION">
+                <member segment="8"/>
+            </segmentGroup>
+            <segmentGroup id="basal_3_group">
+                <include segmentGroup="basal_3_SECTION"/>
+            </segmentGroup>
+        </morphology>
+        <biophysicalProperties id="biophys_CELL_HH_reduced_L5Pyr">
+            <membraneProperties>
+                <channelDensity id="leak_soma_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
+                <channelDensity id="k_soma_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_soma_group" ionChannel="na_hh" condDensity="0.16 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_trunk_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_trunk_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_trunk_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_1_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_2_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_2_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_2_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_oblique_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_oblique_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_oblique_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_apical_tuft_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_apical_tuft_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_apical_tuft_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_1_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_2_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_2_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_2_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <channelDensity id="leak_basal_3_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-71.0 mV" ion="non_specific"/>
+                <channelDensity id="k_basal_3_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
+                <channelDensity id="na_basal_3_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <spikeThresh value="10 mV"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="soma_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_trunk_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_1_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_2_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_oblique_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_tuft_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_1_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_2_group"/>
+                <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_3_group"/>
+                <initMembPotential value="-72.0 mV"/>
+                <initMembPotential value="-72.0 mV"/>
+                <initMembPotential value="-71.32 mV"/>
+                <initMembPotential value="-69.08 mV"/>
+                <initMembPotential value="-72.0 mV"/>
+                <initMembPotential value="-67.3 mV"/>
+                <initMembPotential value="-72.0 mV"/>
+                <initMembPotential value="-72.0 mV"/>
+                <initMembPotential value="-72.0 mV"/>
+            </membraneProperties>
+            <intracellularProperties>
+                <resistivity value="200.0 ohm_cm" segmentGroup="soma_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_trunk_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_1_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_2_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_oblique_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="apical_tuft_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_1_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_2_group"/>
+                <resistivity value="200.0 ohm_cm" segmentGroup="basal_3_group"/>
+            </intracellularProperties>
+        </biophysicalProperties>
+    </cell>
+    <network id="HNN">
+        <population id="L2Basket" component="CELL_HH_simple_L2Basket" size="3" type="populationList">
+            <property tag="radius" value="5"/>
+            <property tag="color" value="0.41661987254534116 0.010169169457068361 0.8252065092537432"/>
+            <instance id="0">
+                <location x="0." y="-50." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="100." y="-50." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="-50." z="200."/>
+            </instance>
+        </population>
+        <population id="L2Pyr" component="CELL_HH_reduced_L2Pyr" size="9" type="populationList">
+            <property tag="radius" value="5"/>
+            <property tag="color" value="0.2986398551995928 0.3684116894884757 0.19366134904507426"/>
+            <instance id="0">
+                <location x="0." y="0." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="0." y="0." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="0." z="200."/>
+            </instance>
+            <instance id="3">
+                <location x="100." y="0." z="0."/>
+            </instance>
+            <instance id="4">
+                <location x="100." y="0." z="100."/>
+            </instance>
+            <instance id="5">
+                <location x="100." y="0." z="200."/>
+            </instance>
+            <instance id="6">
+                <location x="200." y="0." z="0."/>
+            </instance>
+            <instance id="7">
+                <location x="200." y="0." z="100."/>
+            </instance>
+            <instance id="8">
+                <location x="200." y="0." z="200."/>
+            </instance>
+        </population>
+        <population id="L5Basket" component="CELL_HH_simple_L5Basket" size="3" type="populationList">
+            <property tag="radius" value="5"/>
+            <property tag="color" value="0.5660081687288613 0.1616878239293682 0.12426688428353017"/>
+            <instance id="0">
+                <location x="0." y="1258." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="100." y="1258." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="1258." z="200."/>
+            </instance>
+        </population>
+        <population id="L5Pyr" component="CELL_HH_reduced_L5Pyr" size="9" type="populationList">
+            <property tag="radius" value="5"/>
+            <property tag="color" value="0.4329362680099159 0.5620784880758429 0.1743435607237318"/>
+            <instance id="0">
+                <location x="0." y="1308." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="0." y="1308." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="1308." z="200."/>
+            </instance>
+            <instance id="3">
+                <location x="100." y="1308." z="0."/>
+            </instance>
+            <instance id="4">
+                <location x="100." y="1308." z="100."/>
+            </instance>
+            <instance id="5">
+                <location x="100." y="1308." z="200."/>
+            </instance>
+            <instance id="6">
+                <location x="200." y="1308." z="0."/>
+            </instance>
+            <instance id="7">
+                <location x="200." y="1308." z="100."/>
+            </instance>
+            <instance id="8">
+                <location x="200." y="1308." z="200."/>
+            </instance>
+        </population>
+        <projection id="NetConn_L2Pyr_L2Basket_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L2Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Basket_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L2Basket" synapse="GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Pyr_L2Pyr_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L2Pyr" synapse="L2Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Pyr_L2Pyr_GABAB" presynapticPopulation="L2Basket" postsynapticPopulation="L2Pyr" synapse="L2Pyr_GABAB">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L5Pyr_L5Basket_AMPA" presynapticPopulation="L5Pyr" postsynapticPopulation="L5Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Pyr_L5Basket_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L5Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Basket_GABAA" presynapticPopulation="L5Basket" postsynapticPopulation="L5Basket" synapse="GABAA">
+            <connectionWD id="0" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Pyr_L5Pyr_GABAA" presynapticPopulation="L5Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="6" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="7" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="8" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="10" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="11" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="13" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="15" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="17" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="18" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="19" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="20" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="23" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="26" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Pyr_L5Pyr_GABAB" presynapticPopulation="L5Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAB">
+            <connectionWD id="0" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="6" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="7" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="8" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="10" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="11" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="13" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="15" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="17" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="18" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="19" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="20" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="23" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="26" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+        </projection>
+        <projection id="NetConn_L2Pyr_L5Pyr_L5Pyr_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L5Pyr" synapse="L5Pyr_AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="3" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="4" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="5" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="6" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="7" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="8" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="10" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="11" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="12" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="13" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="15" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="16" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="17" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="18" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="19" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="20" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="21" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="22" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="23" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="24" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="25" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="26" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="27" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="28" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="29" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="30" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="31" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="32" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="33" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="34" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="35" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L5Pyr_L5Pyr_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0." delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0." delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+        </projection>
+    </network>
+</neuroml>
