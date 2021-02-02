@@ -1,5 +1,8 @@
 <neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.1.xsd" id="HNN">
     <notes>NeuroML 2 file exported from NetPyNE v0.9.8</notes>
+    
+    <include href="CELL_HH_reduced_L2Pyr.cell.nml"/>
+    
     <ionChannelHH id="leak_hh" type="ionChannelPassive" conductance="10pS">
         <notes>Single ion channel in NeuroML2 format: passive channel providing a leak conductance </notes>
     </ionChannelHH>
@@ -62,161 +65,8 @@
             </intracellularProperties>
         </biophysicalProperties>
     </cell>
-    <cell id="CELL_HH_reduced_L2Pyr">
-        <notes>Cell exported from NetPyNE:
-{'secLists': {'apical': ['apical_trunk', 'apical_1', 'apical_tuft', 'apical_oblique'], 'basal': ['basal_1', 'basal_2', 'basal_3']}, 'secs': {'soma': {'geom': {'L': 22.1, 'Ra': 200.0, 'cm': 0.6195, 'diam': 23.4, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 23.4], [0.0, 22.1, 0.0, 23.4]]}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.18}, 'km': {'gbar': 250.0}}, 'topol': {}, 'vinit': -71.46}, 'apical_trunk': {'geom': {'L': 59.5, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.25, 'nseg': 1, 'pt3d': [[0.0, 13.0, 0.0, 4.25], [0.0, 72.5, 0.0, 4.25]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_1': {'geom': {'L': 306.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.08, 'nseg': 7, 'pt3d': [[0.0, 48.0, 0.0, 4.08], [0.0, 354.0, 0.0, 4.08]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_oblique': {'geom': {'L': 340.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 3.91, 'nseg': 7, 'pt3d': [[0.0, 48.0, 0.0, 3.91], [-340.0, 48.0, 0.0, 3.91]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_trunk', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'apical_tuft': {'geom': {'L': 238.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 3.4, 'nseg': 5, 'pt3d': [[0.0, 228.0, 0.0, 3.4], [0.0, 466.0, 0.0, 3.4]]}, 'topol': {'childX': 0.0, 'parentSec': 'apical_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_1': {'geom': {'L': 85.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 4.25, 'nseg': 1, 'pt3d': [[0.0, 0.0, 0.0, 4.25], [0.0, -85.0, 0.0, 4.25]]}, 'topol': {'childX': 0.0, 'parentSec': 'soma', 'parentX': 0.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_2': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 2.72, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 2.72], [-180.3122292025696, -230.3122292025696, 0.0, 2.72]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}, 'basal_3': {'geom': {'L': 255.0, 'Ra': 200.0, 'cm': 0.6195, 'diam': 2.72, 'nseg': 5, 'pt3d': [[0.0, -50.0, 0.0, 2.72], [180.3122292025696, -230.3122292025696, 0.0, 2.72]]}, 'topol': {'childX': 0.0, 'parentSec': 'basal_1', 'parentX': 1.0}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'dipole': {}, 'hh2': {'el': -65.0, 'gkbar': 0.01, 'gl': 4.26e-05, 'gnabar': 0.15}, 'km': {'gbar': 250.0}}, 'vinit': -71.46}}, 'conds': {'cellType': 'L2Pyr', 'cellModel': 'HH_reduced'}}</notes>
-        <morphology id="morph_CELL_HH_reduced_L2Pyr">
-            <segment id="0" name="soma">
-                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="23.4"/>
-                <distal x="0.000000e+00" y="2.210000e+01" z="0.000000e+00" diameter="23.4"/>
-            </segment>
-            <segment id="1" name="apical_trunk">
-                <parent segment="0"/>
-                <proximal x="0.000000e+00" y="1.300000e+01" z="0.000000e+00" diameter="4.25"/>
-                <distal x="0.000000e+00" y="7.250000e+01" z="0.000000e+00" diameter="4.25"/>
-            </segment>
-            <segment id="2" name="apical_1">
-                <parent segment="1"/>
-                <proximal x="0.000000e+00" y="4.800000e+01" z="0.000000e+00" diameter="4.08"/>
-                <distal x="0.000000e+00" y="3.540000e+02" z="0.000000e+00" diameter="4.08"/>
-            </segment>
-            <segment id="3" name="apical_oblique">
-                <parent segment="1"/>
-                <proximal x="0.000000e+00" y="4.800000e+01" z="0.000000e+00" diameter="3.91"/>
-                <distal x="-3.400000e+02" y="4.800000e+01" z="0.000000e+00" diameter="3.91"/>
-            </segment>
-            <segment id="4" name="apical_tuft">
-                <parent segment="2"/>
-                <proximal x="0.000000e+00" y="2.280000e+02" z="0.000000e+00" diameter="3.4"/>
-                <distal x="0.000000e+00" y="4.660000e+02" z="0.000000e+00" diameter="3.4"/>
-            </segment>
-            <segment id="5" name="basal_1">
-                <parent segment="0"/>
-                <proximal x="0.000000e+00" y="0.000000e+00" z="0.000000e+00" diameter="4.25"/>
-                <distal x="0.000000e+00" y="-8.500000e+01" z="0.000000e+00" diameter="4.25"/>
-            </segment>
-            <segment id="6" name="basal_2">
-                <parent segment="5"/>
-                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="2.72"/>
-                <distal x="-1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="2.72"/>
-            </segment>
-            <segment id="7" name="basal_3">
-                <parent segment="5"/>
-                <proximal x="0.000000e+00" y="-5.000000e+01" z="0.000000e+00" diameter="2.72"/>
-                <distal x="1.803122e+02" y="-2.303122e+02" z="0.000000e+00" diameter="2.72"/>
-            </segment>
-            <segmentGroup neuroLexId="sao864921383" id="soma_SECTION">
-                <member segment="0"/>
-            </segmentGroup>
-            <segmentGroup id="soma_group">
-                <include segmentGroup="soma_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="apical_trunk_SECTION">
-                <member segment="1"/>
-            </segmentGroup>
-            <segmentGroup id="apical_trunk_group">
-                <include segmentGroup="apical_trunk_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="apical_1_SECTION">
-                <member segment="2"/>
-            </segmentGroup>
-            <segmentGroup id="apical_1_group">
-                <include segmentGroup="apical_1_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="apical_oblique_SECTION">
-                <member segment="3"/>
-            </segmentGroup>
-            <segmentGroup id="apical_oblique_group">
-                <include segmentGroup="apical_oblique_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="apical_tuft_SECTION">
-                <member segment="4"/>
-            </segmentGroup>
-            <segmentGroup id="apical_tuft_group">
-                <include segmentGroup="apical_tuft_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="basal_1_SECTION">
-                <member segment="5"/>
-            </segmentGroup>
-            <segmentGroup id="basal_1_group">
-                <include segmentGroup="basal_1_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="basal_2_SECTION">
-                <member segment="6"/>
-            </segmentGroup>
-            <segmentGroup id="basal_2_group">
-                <include segmentGroup="basal_2_SECTION"/>
-            </segmentGroup>
-            <segmentGroup neuroLexId="sao864921383" id="basal_3_SECTION">
-                <member segment="7"/>
-            </segmentGroup>
-            <segmentGroup id="basal_3_group">
-                <include segmentGroup="basal_3_SECTION"/>
-            </segmentGroup>
-        </morphology>
-        <biophysicalProperties id="biophys_CELL_HH_reduced_L2Pyr">
-            <membraneProperties>
-                <channelDensity id="leak_soma_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_soma_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_soma_group" ionChannel="na_hh" condDensity="0.18 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_apical_trunk_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_apical_trunk_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_apical_trunk_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_apical_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_apical_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_apical_1_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_apical_oblique_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_apical_oblique_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_apical_oblique_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_apical_tuft_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_apical_tuft_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_apical_tuft_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_basal_1_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_basal_1_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_basal_1_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_basal_2_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_basal_2_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_basal_2_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <channelDensity id="leak_basal_3_group" ionChannel="leak_hh" condDensity="4.26e-05 S_per_cm2" erev="-65.0 mV" ion="non_specific"/>
-                <channelDensity id="k_basal_3_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
-                <channelDensity id="na_basal_3_group" ionChannel="na_hh" condDensity="0.15 S_per_cm2" erev="50 mV" ion="na"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="soma_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_trunk_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_1_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_oblique_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="apical_tuft_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_1_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_2_group"/>
-                <specificCapacitance value="0.6195 uF_per_cm2" segmentGroup="basal_3_group"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-                <initMembPotential value="-71.46 mV"/>
-            </membraneProperties>
-            <intracellularProperties>
-                <resistivity value="200.0 ohm_cm" segmentGroup="soma_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="apical_trunk_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="apical_1_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="apical_oblique_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="apical_tuft_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="basal_1_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="basal_2_group"/>
-                <resistivity value="200.0 ohm_cm" segmentGroup="basal_3_group"/>
-            </intracellularProperties>
-        </biophysicalProperties>
-    </cell>
+    
+        
     <cell id="CELL_HH_simple_L5Basket">
         <notes>Cell exported from NetPyNE:
 {'secs': {'soma': {'geom': {'L': 39.0, 'Ra': 200.0, 'cm': 0.85, 'diam': 20.0, 'nseg': 1}, 'ions': {'k': {'e': -77.0, 'i': 54.4, 'o': 2.5}, 'na': {'e': 50.0, 'i': 10.0, 'o': 140.0}}, 'mechs': {'hh2': {'el': -54.3, 'gkbar': 0.036, 'gl': 0.0003, 'gnabar': 0.12}}, 'topol': {}, 'vinit': -64.9737}}, 'conds': {'cellType': 'L5Basket', 'cellModel': 'HH_simple'}}</notes>
