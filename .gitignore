@@ -6,3 +6,9 @@ x86_64
 /NeuroML2/*.dat
 /NeuroML2/report.*.txt
 /NeuroML2/LEMS_SimHNN_inputs.xml
+/NeuroML2/nmllite/*.hoc
+*_nrn.py
+*.gv*
+/NeuroML2/nmllite/*.mod
+report.*.txt
+/NeuroML2/nmllite/*.dat
