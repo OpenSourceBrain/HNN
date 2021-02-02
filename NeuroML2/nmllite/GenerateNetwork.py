@@ -13,34 +13,39 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     net.seed = 7890
     net.temperature = 32
 
-    net.parameters = { 'np2': np2,  'np5': np5,  'nb2': nb2,  'nb5': nb5, 'input_amp1':       0.3}
+    net.parameters = { 'np2': np2,
+                       'np5': np5,
+                       'nb2': nb2,
+                       'nb5': nb5,
+                       'input_amp1': 0.3,
+                       'weight_bkg': 0.01}
 
     l2p_cell = Cell(id='CELL_HH_reduced_L2Pyr', neuroml2_source_file='../CELL_HH_reduced_L2Pyr.cell.nml')
     net.cells.append(l2p_cell)
+    l5p_cell = Cell(id='CELL_HH_reduced_L5Pyr', neuroml2_source_file='../CELL_HH_reduced_L5Pyr.cell.nml')
+    net.cells.append(l5p_cell)
 
 
-    '''input_source = InputSource(id='poissonFiringSyn', neuroml2_source_file='test_files/inputs.nml')
-    net.input_sources.append(input_source)'''
+    input_source_poisson100 = InputSource(id='poissonFiringSyn100Hz', neuroml2_source_file='../inputs.nml')
+    net.input_sources.append(input_source_poisson100)
 
     input_source1 = InputSource(id='i_clamp1',
                                pynn_input='DCSource',
                                parameters={'amplitude':'input_amp1', 'start':100, 'stop':300})
 
     net.input_sources.append(input_source1)
-    '''
-    input_source2 = InputSource(id='i_clamp2',
-                               pynn_input='DCSource',
-                               parameters={'amplitude':'input_amp2', 'start':500, 'stop':800})
-
-    net.input_sources.append(input_source2)'''
 
 
-    r1 = RectangularRegion(id='region1', x=0,y=0,z=0,width=1000,height=10,depth=1000)
-    net.regions.append(r1)
 
-    pop_l2p = Population(id='pop_l2p', size='np2', component=l2p_cell.id, properties={'color':'.7 0 0'},random_layout = RandomLayout(region=r1.id))
+    l2 = RectangularRegion(id='L2', x=0,y=1000,z=0,width=1000,height=10,depth=1000)
+    net.regions.append(l2)
+    l5 = RectangularRegion(id='L5', x=0,y=0,z=0,width=1000,height=10,depth=1000)
+    net.regions.append(l5)
 
+    pop_l2p = Population(id='pop_l2p', size='np2', component=l2p_cell.id, properties={'color':'.7 0 0'},random_layout = RandomLayout(region=l2.id))
     net.populations.append(pop_l2p)
+    pop_l5p = Population(id='pop_l5p', size='np5', component=l5p_cell.id, properties={'color':'0 0.7 0'},random_layout = RandomLayout(region=l5.id))
+    net.populations.append(pop_l5p)
 
     '''
     net.synapses.append(Synapse(id='ampa', neuroml2_source_file='test_files/ampa.synapse.nml'))
@@ -62,6 +67,13 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
                                 population=pop_id,
                                 percentage=100))
 
+    for pop_id in [pop_l5p.id]:
+        net.inputs.append(Input(id='stim_%s'%pop_id,
+                                input_source=input_source_poisson100.id,
+                                population=pop_id,
+                                percentage=100,
+                                weight='weight_bkg'))
+
     print(net.to_json())
     new_file = net.to_json_file('%s.json'%net.id)
 
@@ -71,10 +83,11 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
 
     sim = Simulation(id='Sim%s'%net.id,
                      network=new_file,
-                     duration='1000',
+                     duration='500',
                      seed='1111',
                      dt='0.025',
-                     recordTraces={'all':'*:[0,1,2,3,4,5,6,7]'})
+                     recordTraces={'all':'*:[0]'},
+                     recordSpikes={'all':'*'})
 
     sim.to_json_file()
     print(sim.to_json())
@@ -88,6 +101,8 @@ from neuromllite.NetworkGenerator import check_to_generate_or_run
 import sys
 
 
-sim, net = generate('Pyr5s',np2=1)
+sim, net = generate('BigNet',np2=1,np5=6)
+
+#sim, net = generate('Pyr5s',np2=1)
 
 check_to_generate_or_run(sys.argv, sim)

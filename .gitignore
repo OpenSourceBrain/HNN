@@ -12,3 +12,13 @@ x86_64
 /NeuroML2/nmllite/*.mod
 report.*.txt
 /NeuroML2/nmllite/*.dat
+/NeuroML2/nmllite/CELL_HH_reduced_L2Pyr.cell.nml
+/NeuroML2/nmllite/CELL_HH_reduced_L5Pyr.cell.nml
+/NeuroML2/nmllite/HNN_Synapses.nml
+/NeuroML2/nmllite/LEMS_SimBigNet.xml
+/NeuroML2/nmllite/*.spikes
+/NeuroML2/nmllite/inputs.nml
+/NeuroML2/nmllite/k_hh.channel.nml
+/NeuroML2/nmllite/leak_hh.channel.nml
+/NeuroML2/nmllite/na_hh.channel.nml
+*_netpyne.py

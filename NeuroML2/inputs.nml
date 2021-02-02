@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2  ../Schemas/NeuroML2/NeuroML_v2beta5.xsd"
+    id="NML2_Inputs">
+
+    <include href="HNN_Synapses.nml"/>
+
+    <poissonFiringSynapse id="poissonFiringSyn" averageRate="10 Hz" synapse="AMPA" spikeTarget="./AMPA"/>
+
+    <poissonFiringSynapse id="poissonFiringSyn100Hz" averageRate="100 Hz" synapse="AMPA" spikeTarget="./AMPA"/>
+
+</neuroml>
