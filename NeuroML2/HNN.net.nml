@@ -424,13 +424,13 @@
             <property tag="radius" value="5"/>
             <property tag="color" value="0.41661987254534116 0.010169169457068361 0.8252065092537432"/>
             <instance id="0">
-                <location x="0." y="-50." z="0."/>
+                <location x="0." y="-150." z="0."/>
             </instance>
             <instance id="1">
-                <location x="100." y="-50." z="100."/>
+                <location x="100." y="-150." z="100."/>
             </instance>
             <instance id="2">
-                <location x="0." y="-50." z="200."/>
+                <location x="0." y="-150." z="200."/>
             </instance>
         </population>
         <population id="L2Pyr" component="CELL_HH_reduced_L2Pyr" size="9" type="populationList">
@@ -468,13 +468,13 @@
             <property tag="radius" value="5"/>
             <property tag="color" value="0.5660081687288613 0.1616878239293682 0.12426688428353017"/>
             <instance id="0">
-                <location x="0." y="1258." z="0."/>
+                <location x="0." y="1158." z="0."/>
             </instance>
             <instance id="1">
-                <location x="100." y="1258." z="100."/>
+                <location x="100." y="1158." z="100."/>
             </instance>
             <instance id="2">
-                <location x="0." y="1258." z="200."/>
+                <location x="0." y="1158." z="200."/>
             </instance>
         </population>
         <population id="L5Pyr" component="CELL_HH_reduced_L5Pyr" size="9" type="populationList">
