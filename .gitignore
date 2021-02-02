@@ -1,0 +1,8 @@
+/NeuroML2/*.mod
+/NeuroML2/*.hoc
+/NeuroML2/*_nrn.py
+/NeuroML2/*.spikes
+x86_64
+/NeuroML2/*.dat
+/NeuroML2/report.*.txt
+/NeuroML2/LEMS_SimHNN_inputs.xml
