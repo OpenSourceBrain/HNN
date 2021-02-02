@@ -1,0 +1,307 @@
+<neuroml xmlns="http://www.neuroml.org/schema/neuroml2"  xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.neuroml.org/schema/neuroml2 https://raw.github.com/NeuroML/NeuroML2/development/Schemas/NeuroML2/NeuroML_v2.1.xsd" id="HNN_inputs">
+    <include href="CELL_HH_simple_L2Basket.cell.nml"/>
+    <include href="CELL_HH_reduced_L2Pyr.cell.nml"/>
+    <include href="CELL_HH_simple_L5Basket.cell.nml"/>
+    <include href="CELL_HH_reduced_L5Pyr.cell.nml"/>
+    <include href="HNN_Synapses.nml"/>
+    <network id="HNN_inputs">
+        <population id="L2Basket" component="CELL_HH_simple_L2Basket" size="3" type="populationList">
+            <property tag="color" value="0.41661987254534116 0.010169169457068361 0.8252065092537432"/>
+            <instance id="0">
+                <location x="0." y="-150." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="100." y="-150." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="-150." z="200."/>
+            </instance>
+        </population>
+        <population id="L2Pyr" component="CELL_HH_reduced_L2Pyr" size="9" type="populationList">
+            <property tag="color" value="0.2986398551995928 0.3684116894884757 0.19366134904507426"/>
+            <instance id="0">
+                <location x="0." y="0." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="0." y="0." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="0." z="200."/>
+            </instance>
+            <instance id="3">
+                <location x="100." y="0." z="0."/>
+            </instance>
+            <instance id="4">
+                <location x="100." y="0." z="100."/>
+            </instance>
+            <instance id="5">
+                <location x="100." y="0." z="200."/>
+            </instance>
+            <instance id="6">
+                <location x="200." y="0." z="0."/>
+            </instance>
+            <instance id="7">
+                <location x="200." y="0." z="100."/>
+            </instance>
+            <instance id="8">
+                <location x="200." y="0." z="200."/>
+            </instance>
+        </population>
+        <population id="L5Basket" component="CELL_HH_simple_L5Basket" size="3" type="populationList">
+            <property tag="color" value="0.5660081687288613 0.1616878239293682 0.12426688428353017"/>
+            <instance id="0">
+                <location x="0." y="1158." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="100." y="1158." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="1158." z="200."/>
+            </instance>
+        </population>
+        <population id="L5Pyr" component="CELL_HH_reduced_L5Pyr" size="9" type="populationList">
+            <property tag="color" value="0.4329362680099159 0.5620784880758429 0.1743435607237318"/>
+            <instance id="0">
+                <location x="0." y="1308." z="0."/>
+            </instance>
+            <instance id="1">
+                <location x="0." y="1308." z="100."/>
+            </instance>
+            <instance id="2">
+                <location x="0." y="1308." z="200."/>
+            </instance>
+            <instance id="3">
+                <location x="100." y="1308." z="0."/>
+            </instance>
+            <instance id="4">
+                <location x="100." y="1308." z="100."/>
+            </instance>
+            <instance id="5">
+                <location x="100." y="1308." z="200."/>
+            </instance>
+            <instance id="6">
+                <location x="200." y="1308." z="0."/>
+            </instance>
+            <instance id="7">
+                <location x="200." y="1308." z="100."/>
+            </instance>
+            <instance id="8">
+                <location x="200." y="1308." z="200."/>
+            </instance>
+        </population>
+        <projection id="NetConn_L2Pyr_L2Basket_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L2Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0.0005" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Basket_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L2Basket" synapse="GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Basket/0/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Basket/1/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Basket/2/CELL_HH_simple_L2Basket" weight="0." delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Pyr_L2Pyr_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L2Pyr" synapse="L2Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L2Pyr_L2Pyr_GABAB" presynapticPopulation="L2Basket" postsynapticPopulation="L2Pyr" synapse="L2Pyr_GABAB">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.05" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000915781944437" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" weight="0.000000000103058" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000000000001" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000016773131395" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" weight="0.000000005626759" delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L5Pyr_L5Basket_AMPA" presynapticPopulation="L5Pyr" postsynapticPopulation="L5Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0.0005" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Pyr_L5Basket_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L5Basket" synapse="AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0.00025" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Basket_GABAA" presynapticPopulation="L5Basket" postsynapticPopulation="L5Basket" synapse="GABAA">
+            <connectionWD id="0" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Basket/0/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Basket/1/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Basket/2/CELL_HH_simple_L5Basket" weight="0." delay="10000 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Pyr_L5Pyr_GABAA" presynapticPopulation="L5Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="6" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="7" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="8" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="10" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="11" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="13" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="15" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="17" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="18" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="19" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="20" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="23" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="26" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+        </projection>
+        <projection id="NetConn_L5Basket_L5Pyr_L5Pyr_GABAB" presynapticPopulation="L5Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAB">
+            <connectionWD id="0" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="2" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="3" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="4" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="5" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="6" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="7" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="8" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="10" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="11" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="13" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="15" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="17" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="18" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+            <connectionWD id="19" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="20" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.003248065207626" delay="7.696889810370731 ms"/>
+            <connectionWD id="23" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000925472808" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L5Basket/0/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000002029635" delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L5Basket/1/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00042199710372" delay="59.24211275298879 ms"/>
+            <connectionWD id="26" preCellId="../L5Basket/2/CELL_HH_simple_L5Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000007123262222" delay="3509.6279234378367 ms"/>
+        </projection>
+        <projection id="NetConn_L2Pyr_L5Pyr_L5Pyr_AMPA" presynapticPopulation="L2Pyr" postsynapticPopulation="L5Pyr" synapse="L5Pyr_AMPA">
+            <connectionWD id="0" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="2" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="3" preCellId="../L2Pyr/0/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="4" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="5" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="6" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="7" preCellId="../L2Pyr/1/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="8" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="10" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="11" preCellId="../L2Pyr/2/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="12" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="13" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="15" preCellId="../L2Pyr/3/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="16" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="17" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="18" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="19" preCellId="../L2Pyr/4/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="20" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="21" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="22" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="23" preCellId="../L2Pyr/5/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="24" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="25" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="26" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="27" preCellId="../L2Pyr/6/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="28" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="29" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="30" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="31" preCellId="../L2Pyr/7/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="32" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="33" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="34" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+            <connectionWD id="35" preCellId="../L2Pyr/8/CELL_HH_reduced_L2Pyr" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.00025" delay="1.0 ms"/>
+        </projection>
+        <projection id="NetConn_L2Basket_L5Pyr_L5Pyr_GABAA" presynapticPopulation="L2Basket" postsynapticPopulation="L5Pyr" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="1" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="2" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/0/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="3" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="4" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="5" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/1/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="6" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="7" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="8" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="9" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="10" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="11" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/3/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="12" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="13" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="1.0 ms"/>
+            <connectionWD id="14" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/4/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="15" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="16" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="17" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/5/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="18" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+            <connectionWD id="19" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="20" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/6/CELL_HH_reduced_L5Pyr" weight="0." delay="10000 ms"/>
+            <connectionWD id="21" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="22" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000018315638889" delay="54.59815003314424 ms"/>
+            <connectionWD id="23" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/7/CELL_HH_reduced_L5Pyr" weight="0.000000000002061" delay="10000 ms"/>
+            <connectionWD id="24" preCellId="../L2Basket/0/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0." delay="10000 ms"/>
+            <connectionWD id="25" preCellId="../L2Basket/1/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000335462628" delay="2980.9579870417283 ms"/>
+            <connectionWD id="26" preCellId="../L2Basket/2/CELL_HH_simple_L2Basket" postCellId="../L5Pyr/8/CELL_HH_reduced_L5Pyr" weight="0.000000000112535" delay="10000 ms"/>
+        </projection>
+    </network>
+</neuroml>
