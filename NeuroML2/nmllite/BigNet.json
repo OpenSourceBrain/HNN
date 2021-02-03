@@ -5,9 +5,9 @@
         "temperature": 32.0,
         "parameters": {
             "np2": 1,
-            "np5": 6,
-            "nb2": 0,
-            "nb5": 0,
+            "np5": 10,
+            "nb2": 1,
+            "nb5": 10,
             "input_amp1": 0.3,
             "weight_bkg": 0.01
         },
@@ -21,6 +21,23 @@
             {
                 "CELL_HH_reduced_L5Pyr": {
                     "neuroml2_source_file": "../CELL_HH_reduced_L5Pyr.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_simple_L2Basket": {
+                    "neuroml2_source_file": "../CELL_HH_simple_L2Basket.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_simple_L5Basket": {
+                    "neuroml2_source_file": "../CELL_HH_simple_L5Basket.cell.nml"
+                }
+            }
+        ],
+        "synapses": [
+            {
+                "AMPA": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
                 }
             }
         ],
@@ -69,7 +86,7 @@
                     "size": "np2",
                     "component": "CELL_HH_reduced_L2Pyr",
                     "properties": {
-                        "color": ".7 0 0"
+                        "color": "0.6 0 0"
                     },
                     "random_layout": {
                         "region": "L2"
@@ -81,10 +98,48 @@
                     "size": "np5",
                     "component": "CELL_HH_reduced_L5Pyr",
                     "properties": {
-                        "color": "0 0.7 0"
+                        "color": "0 0.4 0"
                     },
                     "random_layout": {
                         "region": "L5"
+                    }
+                }
+            },
+            {
+                "pop_l2b": {
+                    "size": "nb2",
+                    "component": "CELL_HH_simple_L2Basket",
+                    "properties": {
+                        "color": "1 0.4 0.4"
+                    },
+                    "random_layout": {
+                        "region": "L2"
+                    }
+                }
+            },
+            {
+                "pop_l5b": {
+                    "size": "nb5",
+                    "component": "CELL_HH_simple_L5Basket",
+                    "properties": {
+                        "color": "0.8 1 0.8"
+                    },
+                    "random_layout": {
+                        "region": "L5"
+                    }
+                }
+            }
+        ],
+        "projections": [
+            {
+                "proj_p5_b5": {
+                    "presynaptic": "pop_l5p",
+                    "postsynaptic": "pop_l5b",
+                    "synapse": "AMPA",
+                    "delay": 0,
+                    "weight": 0.001,
+                    "random_connectivity": {
+                        "probability": 0.1
                     }
                 }
             }

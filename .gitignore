@@ -25,3 +25,5 @@ report.*.txt
 /NeuroML2/nmllite/BigNet.net.png
 /NeuroML2/nmllite/Sim*.json
 /NeuroML2/nmllite/LEMS*.xml
+/NeuroML2/clean.sh
+/NeuroML2/nmllite/clean.sh

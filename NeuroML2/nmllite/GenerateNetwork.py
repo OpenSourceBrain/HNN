@@ -24,6 +24,10 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     net.cells.append(l2p_cell)
     l5p_cell = Cell(id='CELL_HH_reduced_L5Pyr', neuroml2_source_file='../CELL_HH_reduced_L5Pyr.cell.nml')
     net.cells.append(l5p_cell)
+    l2b_cell = Cell(id='CELL_HH_simple_L2Basket', neuroml2_source_file='../CELL_HH_simple_L2Basket.cell.nml')
+    net.cells.append(l2b_cell)
+    l5b_cell = Cell(id='CELL_HH_simple_L5Basket', neuroml2_source_file='../CELL_HH_simple_L5Basket.cell.nml')
+    net.cells.append(l5b_cell)
 
 
     input_source_poisson100 = InputSource(id='poissonFiringSyn100Hz', neuroml2_source_file='../inputs.nml')
@@ -42,23 +46,30 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     l5 = RectangularRegion(id='L5', x=0,y=0,z=0,width=1000,height=10,depth=1000)
     net.regions.append(l5)
 
-    pop_l2p = Population(id='pop_l2p', size='np2', component=l2p_cell.id, properties={'color':'.7 0 0'},random_layout = RandomLayout(region=l2.id))
+    #https://github.com/OpenSourceBrain/OpenCortex
+    import opencortex.utils.color as occ
+
+    pop_l2p = Population(id='pop_l2p', size='np2', component=l2p_cell.id, properties={'color':occ.L23_PRINCIPAL_CELL},random_layout = RandomLayout(region=l2.id))
     net.populations.append(pop_l2p)
-    pop_l5p = Population(id='pop_l5p', size='np5', component=l5p_cell.id, properties={'color':'0 0.7 0'},random_layout = RandomLayout(region=l5.id))
+    pop_l5p = Population(id='pop_l5p', size='np5', component=l5p_cell.id, properties={'color':occ.L5_PRINCIPAL_CELL},random_layout = RandomLayout(region=l5.id))
     net.populations.append(pop_l5p)
+    pop_l2b = Population(id='pop_l2b', size='nb2', component=l2b_cell.id, properties={'color':occ.L23_INTERNEURON},random_layout = RandomLayout(region=l2.id))
+    net.populations.append(pop_l2b)
+    pop_l5b = Population(id='pop_l5b', size='nb5', component=l5b_cell.id, properties={'color':occ.L5_INTERNEURON},random_layout = RandomLayout(region=l5.id))
+    net.populations.append(pop_l5b)
 
-    '''
-    net.synapses.append(Synapse(id='ampa', neuroml2_source_file='test_files/ampa.synapse.nml'))
-    net.synapses.append(Synapse(id='gaba', neuroml2_source_file='test_files/gaba.synapse.nml'))
+
+    net.synapses.append(Synapse(id='AMPA', neuroml2_source_file='../HNN_Synapses.nml'))
+    #net.synapses.append(Synapse(id='L5Pyr_GABAA', neuroml2_source_file='../HNN_Synapses.nml'))
 
 
-    net.projections.append(Projection(id='projEI',
-                                      presynaptic=pE.id,
-                                      postsynaptic=pRS.id,
-                                      synapse='ampa',
-                                      delay=2,
-                                      weight=0.2,
-                                      random_connectivity=RandomConnectivity(probability=.8))'''
+    net.projections.append(Projection(id='proj_p5_b5',
+                                      presynaptic=pop_l5p.id,
+                                      postsynaptic=pop_l5b.id,
+                                      synapse='AMPA',
+                                      delay=0,
+                                      weight=0.001,
+                                      random_connectivity=RandomConnectivity(probability=.1)))
 
 
     for pop_id in [pop_l2p.id]:
@@ -104,6 +115,6 @@ import sys
 if '-single' in sys.argv:
     sim, net = generate('Pyr5s',np2=1)
 else:
-    sim, net = generate('BigNet',np2=1,np5=6)
+    sim, net = generate('BigNet',np2=1,np5=10,nb2=1,nb5=10)
 
 check_to_generate_or_run(sys.argv, sim)
