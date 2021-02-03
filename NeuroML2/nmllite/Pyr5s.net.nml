@@ -8,14 +8,26 @@
         np2 = 0
         np5 = 1
         offset_curr_l2p = -0.05
-        weight_bkg = 0.01</notes>
+        weight_bkg_l2p = 0.01
+        weight_bkg_l5p = 0.01
+        weight_l2b_l2p = 0.001
+        weight_l2b_l5p = 0.001
+        weight_l2p_l2b = 0.001
+        weight_l2p_l5b = 0.001
+        weight_l2p_l5p = 0.001
+        weight_l5b_l5p = 0.001
+        weight_l5p_l5b = 0.001</notes>
     <include href="../inputs.nml"/>
     <include href="../CELL_HH_reduced_L2Pyr.cell.nml"/>
     <include href="../CELL_HH_reduced_L5Pyr.cell.nml"/>
     <include href="../CELL_HH_simple_L2Basket.cell.nml"/>
     <include href="../CELL_HH_simple_L5Basket.cell.nml"/>
     <expTwoSynapse id="AMPA" gbase="1uS" erev="0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
     <expTwoSynapse id="L5Pyr_AMPA" gbase="1uS" erev="0.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
     <pulseGenerator id="input_offset_curr_l2p" delay="0.0ms" duration="1000000000.0ms" amplitude="-0.05nA"/>
     <network id="Pyr5s" type="networkWithTemperature" temperature="32.0degC">
         <notes>Example: Pyr5s...</notes>
@@ -40,9 +52,18 @@
             <property tag="color" value="0.8 1 0.8"/>
             <property tag="region" value="L5"/>
         </population>
-        <projection id="proj_p5_b5" presynapticPopulation="pop_l5p" postsynapticPopulation="pop_l5b" synapse="AMPA"/>
-        <projection id="proj_p2_p5" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5p" synapse="L5Pyr_AMPA"/>
-        <inputList id="stim_input_offset_curr_l2p" population="pop_l2p" component="input_offset_curr_l2p"/>
+        <projection id="proj_l2p_l2b_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l2b" synapse="AMPA"/>
+        <projection id="proj_l2b_l2p_L2Pyr_GABAA" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l2p" synapse="L2Pyr_GABAA"/>
+        <projection id="proj_l2b_l2p_L2Pyr_GABAB" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l2p" synapse="L2Pyr_GABAB"/>
+        <projection id="proj_l2p_l5p_L5Pyr_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5p" synapse="L5Pyr_AMPA"/>
+        <projection id="proj_l2p_l5b_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5b" synapse="AMPA"/>
+        <projection id="proj_l2b_l5p_L5Pyr_GABAA" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAA"/>
+        <projection id="proj_l5p_l5b_AMPA" presynapticPopulation="pop_l5p" postsynapticPopulation="pop_l5b" synapse="AMPA"/>
+        <projection id="proj_l5b_l5p_L5Pyr_GABAA" presynapticPopulation="pop_l5b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAA"/>
+        <projection id="proj_l5b_l5p_L5Pyr_GABAB" presynapticPopulation="pop_l5b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAB"/>
         <inputList id="stim_pop_l2p" population="pop_l2p" component="poissonFiringSyn100Hz"/>
+        <inputList id="stim_pop_l5p" population="pop_l5p" component="poissonFiringSyn100Hz">
+            <inputW id="0" target="../pop_l5p/0/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+        </inputList>
     </network>
 </neuroml>

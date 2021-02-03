@@ -3,7 +3,7 @@ from neuromllite import Network, Cell, InputSource, Population, Synapse, Rectang
 from neuromllite import Projection, RandomConnectivity, Input, Simulation
 import sys
 
-def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
+def generate(ref, np2=0, np5=0, nb2=0, nb5=0, recordTraces='*'):
     ################################################################################
     ###   Build new network
 
@@ -18,7 +18,8 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
                        'nb2': nb2,
                        'nb5': nb5,
                        'offset_curr_l2p': -0.05,
-                       'weight_bkg': 0.01}
+                       'weight_bkg_l2p': 0.01,
+                       'weight_bkg_l5p': 0.01}
 
     l2p_cell = Cell(id='CELL_HH_reduced_L2Pyr', neuroml2_source_file='../CELL_HH_reduced_L2Pyr.cell.nml')
     net.cells.append(l2p_cell)
@@ -59,39 +60,35 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     net.populations.append(pop_l5b)
 
 
-    for syn_id in ['AMPA','L5Pyr_AMPA']:
-        net.synapses.append(Synapse(id=syn_id, neuroml2_source_file='../HNN_Synapses.nml'))
+    # L2 -> L2
+    _add_projection(pop_l2p, pop_l2b, 'AMPA',        delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l2b, pop_l2p, 'L2Pyr_GABAA', delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l2b, pop_l2p, 'L2Pyr_GABAB', delay=0, weight=0.001, probability=0.8, net=net)
+
+    # L2 -> L5
+    _add_projection(pop_l2p, pop_l5p, 'L5Pyr_AMPA',  delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l2p, pop_l5b, 'AMPA',        delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l2b, pop_l5p, 'L5Pyr_GABAA', delay=0, weight=0.001, probability=0.8, net=net)
+
+    # L5 -> L5
+    _add_projection(pop_l5p, pop_l5b, 'AMPA',        delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l5b, pop_l5p, 'L5Pyr_GABAA', delay=0, weight=0.001, probability=0.8, net=net)
+    _add_projection(pop_l5b, pop_l5p, 'L5Pyr_GABAB', delay=0, weight=0.001, probability=0.8, net=net)
 
 
-    net.projections.append(Projection(id='proj_p5_b5',
-                                      presynaptic=pop_l5p.id,
-                                      postsynaptic=pop_l5b.id,
-                                      synapse='AMPA',
-                                      delay=0,
-                                      weight=0.001,
-                                      random_connectivity=RandomConnectivity(probability=.1)))
-
-    net.projections.append(Projection(id='proj_p2_p5',
-                                    presynaptic=pop_l2p.id,
-                                    postsynaptic=pop_l5p.id,
-                                    synapse='L5Pyr_AMPA',
-                                    delay=0,
-                                    weight=0.001,
-                                    random_connectivity=RandomConnectivity(probability=.1)))
 
 
-    for pop_id in [pop_l2p.id]:
-        net.inputs.append(Input(id='stim_%s'%input_offset_curr_l2p.id,
-                                input_source=input_offset_curr_l2p.id,
-                                population=pop_id,
-                                percentage=100))
 
-    for pop_id in [pop_l2p.id]:
-        net.inputs.append(Input(id='stim_%s'%pop_id,
-                                input_source=input_source_poisson100.id,
-                                population=pop_id,
-                                percentage=100,
-                                weight='weight_bkg'))
+    net.inputs.append(Input(id='stim_%s'%pop_l2p.id,
+                            input_source=input_source_poisson100.id,
+                            population=pop_l2p.id,
+                            percentage=100,
+                            weight='weight_bkg_l2p'))
+    net.inputs.append(Input(id='stim_%s'%pop_l5p.id,
+                            input_source=input_source_poisson100.id,
+                            population=pop_l5p.id,
+                            percentage=100,
+                            weight='weight_bkg_l5p'))
 
     print(net.to_json())
     new_file = net.to_json_file('%s.json'%net.id)
@@ -105,13 +102,36 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
                      duration='500',
                      seed='1111',
                      dt='0.025',
-                     recordTraces={'all':'*:[0]'},
+                     recordTraces={'all':recordTraces},
                      recordSpikes={'all':'*'})
 
     sim.to_json_file()
     print(sim.to_json())
 
     return sim, net
+
+def _add_projection(pop_pre, pop_post, syn, delay, weight, probability, net):
+
+    pre = pop_pre.id.split('_')[1]
+    post = pop_post.id.split('_')[1]
+    w = 'weight_%s_%s'%(pre,post)
+    net.parameters[w]=weight
+
+    syn_present = False
+
+    for syn_nml in net.synapses:
+        if syn_nml.id == syn:
+            syn_present=True
+    if not syn_present:
+        net.synapses.append(Synapse(id=syn, neuroml2_source_file='../HNN_Synapses.nml'))
+
+    net.projections.append(Projection(id='proj_%s_%s_%s'%(pre,post,syn),
+                                      presynaptic=pop_pre.id,
+                                      postsynaptic=pop_post.id,
+                                      synapse=syn,
+                                      delay=delay,
+                                      weight=w,
+                                      random_connectivity=RandomConnectivity(probability=probability)))
 
 ################################################################################
 ###   Run in some simulators
@@ -123,6 +143,6 @@ import sys
 if '-single' in sys.argv:
     sim, net = generate('Pyr5s',np5=1)
 else:
-    sim, net = generate('BigNet',np2=5,np5=5,nb2=5,nb5=5)
+    sim, net = generate('BigNet',np2=5,np5=5,nb2=5,nb5=5,recordTraces='[0,1,3]')
 
 check_to_generate_or_run(sys.argv, sim)

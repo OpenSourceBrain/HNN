@@ -8,14 +8,26 @@
         np2 = 5
         np5 = 5
         offset_curr_l2p = -0.05
-        weight_bkg = 0.01</notes>
+        weight_bkg_l2p = 0.01
+        weight_bkg_l5p = 0.01
+        weight_l2b_l2p = 0.001
+        weight_l2b_l5p = 0.001
+        weight_l2p_l2b = 0.001
+        weight_l2p_l5b = 0.001
+        weight_l2p_l5p = 0.001
+        weight_l5b_l5p = 0.001
+        weight_l5p_l5b = 0.001</notes>
     <include href="../inputs.nml"/>
     <include href="../CELL_HH_reduced_L2Pyr.cell.nml"/>
     <include href="../CELL_HH_reduced_L5Pyr.cell.nml"/>
     <include href="../CELL_HH_simple_L2Basket.cell.nml"/>
     <include href="../CELL_HH_simple_L5Basket.cell.nml"/>
     <expTwoSynapse id="AMPA" gbase="1uS" erev="0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L2Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
     <expTwoSynapse id="L5Pyr_AMPA" gbase="1uS" erev="0.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_GABAA" gbase="1uS" erev="-80.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <expTwoSynapse id="L5Pyr_GABAB" gbase="1uS" erev="-80.0mV" tauDecay="20.0ms" tauRise="1.0ms"/>
     <pulseGenerator id="input_offset_curr_l2p" delay="0.0ms" duration="1000000000.0ms" amplitude="-0.05nA"/>
     <network id="BigNet" type="networkWithTemperature" temperature="32.0degC">
         <notes>Example: BigNet...</notes>
@@ -97,27 +109,219 @@
                 <location x="104.926817498631635" y="2.93950011697187" z="571.053748350003389"/>
             </instance>
         </population>
-        <projection id="proj_p5_b5" presynapticPopulation="pop_l5p" postsynapticPopulation="pop_l5b" synapse="AMPA">
-            <connectionWD id="0" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="1" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+        <projection id="proj_l2p_l2b_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l2b" synapse="AMPA">
+            <connectionWD id="0" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" weight="0.001" delay="0ms"/>
         </projection>
-        <projection id="proj_p2_p5" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5p" synapse="L5Pyr_AMPA">
-            <connectionWD id="0" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
-            <connectionWD id="1" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        <projection id="proj_l2b_l2p_L2Pyr_GABAA" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l2p" synapse="L2Pyr_GABAA">
+            <connectionWD id="0" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="20" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="21" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="22" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
         </projection>
-        <inputList id="stim_input_offset_curr_l2p" population="pop_l2p" component="input_offset_curr_l2p">
-            <input id="0" target="../pop_l2p/0/CELL_HH_reduced_L2Pyr" destination="synapses"/>
-            <input id="1" target="../pop_l2p/1/CELL_HH_reduced_L2Pyr" destination="synapses"/>
-            <input id="2" target="../pop_l2p/2/CELL_HH_reduced_L2Pyr" destination="synapses"/>
-            <input id="3" target="../pop_l2p/3/CELL_HH_reduced_L2Pyr" destination="synapses"/>
-            <input id="4" target="../pop_l2p/4/CELL_HH_reduced_L2Pyr" destination="synapses"/>
-        </inputList>
+        <projection id="proj_l2b_l2p_L2Pyr_GABAB" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l2p" synapse="L2Pyr_GABAB">
+            <connectionWD id="0" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="20" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l2p_l5p_L5Pyr_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5p" synapse="L5Pyr_AMPA">
+            <connectionWD id="0" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l2p_l5b_AMPA" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5b" synapse="AMPA">
+            <connectionWD id="0" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2p/1/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2p/2/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2p/3/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="20" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l2b_l5p_L5Pyr_GABAA" presynapticPopulation="pop_l2b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l2b/0/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l2b/1/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l2b/2/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l2b/3/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="20" preCellId="../pop_l2b/4/CELL_HH_simple_L2Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l5p_l5b_AMPA" presynapticPopulation="pop_l5p" postsynapticPopulation="pop_l5b" synapse="AMPA">
+            <connectionWD id="0" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l5b_l5p_L5Pyr_GABAA" presynapticPopulation="pop_l5b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAA">
+            <connectionWD id="0" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        </projection>
+        <projection id="proj_l5b_l5p_L5Pyr_GABAB" presynapticPopulation="pop_l5b" postsynapticPopulation="pop_l5p" synapse="L5Pyr_GABAB">
+            <connectionWD id="0" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="2" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="3" preCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="4" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="5" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="6" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="7" preCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="8" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="9" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="10" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="11" preCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="12" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="13" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="14" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="15" preCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="16" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="17" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="18" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="19" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/3/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="20" preCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        </projection>
         <inputList id="stim_pop_l2p" population="pop_l2p" component="poissonFiringSyn100Hz">
             <inputW id="0" target="../pop_l2p/0/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
             <inputW id="1" target="../pop_l2p/1/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
             <inputW id="2" target="../pop_l2p/2/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
             <inputW id="3" target="../pop_l2p/3/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
             <inputW id="4" target="../pop_l2p/4/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
+        </inputList>
+        <inputList id="stim_pop_l5p" population="pop_l5p" component="poissonFiringSyn100Hz">
+            <inputW id="0" target="../pop_l5p/0/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="1" target="../pop_l5p/1/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="2" target="../pop_l5p/2/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="3" target="../pop_l5p/3/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="4" target="../pop_l5p/4/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
         </inputList>
     </network>
 </neuroml>
