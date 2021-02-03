@@ -27,3 +27,5 @@ report.*.txt
 /NeuroML2/nmllite/LEMS*.xml
 /NeuroML2/clean.sh
 /NeuroML2/nmllite/clean.sh
+/NeuroML2/nmllite/CELL_HH_simple_L2Basket.cell.nml
+/NeuroML2/nmllite/CELL_HH_simple_L5Basket.cell.nml

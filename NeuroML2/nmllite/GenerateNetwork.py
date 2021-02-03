@@ -17,7 +17,7 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
                        'np5': np5,
                        'nb2': nb2,
                        'nb5': nb5,
-                       'input_amp1': 0.3,
+                       'offset_curr_l2p': -0.05,
                        'weight_bkg': 0.01}
 
     l2p_cell = Cell(id='CELL_HH_reduced_L2Pyr', neuroml2_source_file='../CELL_HH_reduced_L2Pyr.cell.nml')
@@ -33,11 +33,11 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     input_source_poisson100 = InputSource(id='poissonFiringSyn100Hz', neuroml2_source_file='../inputs.nml')
     net.input_sources.append(input_source_poisson100)
 
-    input_source1 = InputSource(id='i_clamp1',
+    input_offset_curr_l2p = InputSource(id='input_offset_curr_l2p',
                                pynn_input='DCSource',
-                               parameters={'amplitude':'input_amp1', 'start':100, 'stop':300})
+                               parameters={'amplitude':'offset_curr_l2p', 'start':0, 'stop':1e9})
 
-    net.input_sources.append(input_source1)
+    net.input_sources.append(input_offset_curr_l2p)
 
 
 
@@ -59,8 +59,8 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
     net.populations.append(pop_l5b)
 
 
-    net.synapses.append(Synapse(id='AMPA', neuroml2_source_file='../HNN_Synapses.nml'))
-    #net.synapses.append(Synapse(id='L5Pyr_GABAA', neuroml2_source_file='../HNN_Synapses.nml'))
+    for syn_id in ['AMPA','L5Pyr_AMPA']:
+        net.synapses.append(Synapse(id=syn_id, neuroml2_source_file='../HNN_Synapses.nml'))
 
 
     net.projections.append(Projection(id='proj_p5_b5',
@@ -71,14 +71,22 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0):
                                       weight=0.001,
                                       random_connectivity=RandomConnectivity(probability=.1)))
 
+    net.projections.append(Projection(id='proj_p2_p5',
+                                    presynaptic=pop_l2p.id,
+                                    postsynaptic=pop_l5p.id,
+                                    synapse='L5Pyr_AMPA',
+                                    delay=0,
+                                    weight=0.001,
+                                    random_connectivity=RandomConnectivity(probability=.1)))
+
 
     for pop_id in [pop_l2p.id]:
-        net.inputs.append(Input(id='stim_%s'%pop_id,
-                                input_source=input_source1.id,
+        net.inputs.append(Input(id='stim_%s'%input_offset_curr_l2p.id,
+                                input_source=input_offset_curr_l2p.id,
                                 population=pop_id,
                                 percentage=100))
 
-    for pop_id in [pop_l5p.id]:
+    for pop_id in [pop_l2p.id]:
         net.inputs.append(Input(id='stim_%s'%pop_id,
                                 input_source=input_source_poisson100.id,
                                 population=pop_id,
@@ -113,8 +121,8 @@ import sys
 
 
 if '-single' in sys.argv:
-    sim, net = generate('Pyr5s',np2=1)
+    sim, net = generate('Pyr5s',np5=1)
 else:
-    sim, net = generate('BigNet',np2=1,np5=10,nb2=1,nb5=10)
+    sim, net = generate('BigNet',np2=5,np5=5,nb2=5,nb5=5)
 
 check_to_generate_or_run(sys.argv, sim)

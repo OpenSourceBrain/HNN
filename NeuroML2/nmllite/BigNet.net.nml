@@ -3,11 +3,11 @@
     Generated network: BigNet
     Generation seed: 7890
     NeuroMLlite parameters: 
-        input_amp1 = 0.3
-        nb2 = 1
-        nb5 = 10
-        np2 = 1
-        np5 = 10
+        nb2 = 5
+        nb5 = 5
+        np2 = 5
+        np5 = 5
+        offset_curr_l2p = -0.05
         weight_bkg = 0.01</notes>
     <include href="../inputs.nml"/>
     <include href="../CELL_HH_reduced_L2Pyr.cell.nml"/>
@@ -15,117 +15,109 @@
     <include href="../CELL_HH_simple_L2Basket.cell.nml"/>
     <include href="../CELL_HH_simple_L5Basket.cell.nml"/>
     <expTwoSynapse id="AMPA" gbase="1uS" erev="0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
-    <pulseGenerator id="i_clamp1" delay="100.0ms" duration="200.0ms" amplitude="0.3nA"/>
+    <expTwoSynapse id="L5Pyr_AMPA" gbase="1uS" erev="0.0mV" tauDecay="5.0ms" tauRise="0.5ms"/>
+    <pulseGenerator id="input_offset_curr_l2p" delay="0.0ms" duration="1000000000.0ms" amplitude="-0.05nA"/>
     <network id="BigNet" type="networkWithTemperature" temperature="32.0degC">
         <notes>Example: BigNet...</notes>
         <property tag="recommended_dt_ms" value="0.025"/>
         <property tag="recommended_duration_ms" value="500.0"/>
-        <population id="pop_l2p" component="CELL_HH_reduced_L2Pyr" size="1" type="populationList">
+        <population id="pop_l2p" component="CELL_HH_reduced_L2Pyr" size="5" type="populationList">
             <property tag="color" value="0.6 0 0"/>
             <property tag="region" value="L2"/>
             <instance id="0">
                 <location x="247.540711828766803" y="1008.790749639449473" z="992.720928753489375"/>
             </instance>
+            <instance id="1">
+                <location x="14.153573038263257" y="1001.511728636981957" z="691.001952432316784"/>
+            </instance>
+            <instance id="2">
+                <location x="357.579609726350839" y="1006.550605807796046" z="239.665465597642026"/>
+            </instance>
+            <instance id="3">
+                <location x="92.295293571705301" y="1000.283979402761247" z="789.781414926462503"/>
+            </instance>
+            <instance id="4">
+                <location x="391.531394711363021" y="1006.47098721027794" z="126.260562155594002"/>
+            </instance>
         </population>
-        <population id="pop_l5p" component="CELL_HH_reduced_L5Pyr" size="10" type="populationList">
+        <population id="pop_l5p" component="CELL_HH_reduced_L5Pyr" size="5" type="populationList">
             <property tag="color" value="0 0.4 0"/>
             <property tag="region" value="L5"/>
             <instance id="0">
-                <location x="14.153573038263257" y="1.51172863698198" z="691.001952432316784"/>
-            </instance>
-            <instance id="1">
-                <location x="357.579609726350839" y="6.550605807796077" z="239.665465597642026"/>
-            </instance>
-            <instance id="2">
-                <location x="92.295293571705301" y="0.283979402761296" z="789.781414926462503"/>
-            </instance>
-            <instance id="3">
-                <location x="391.531394711363021" y="6.470987210277928" z="126.260562155594002"/>
-            </instance>
-            <instance id="4">
                 <location x="565.509584529211565" y="8.724989304485298" z="366.976424214405483"/>
             </instance>
-            <instance id="5">
+            <instance id="1">
                 <location x="454.500927061039079" y="5.256831037809782" z="462.996953763866486"/>
             </instance>
-            <instance id="6">
+            <instance id="2">
                 <location x="391.20303785121655" y="8.206142953140542" z="869.846153786416494"/>
             </instance>
-            <instance id="7">
+            <instance id="3">
                 <location x="833.474501977987188" y="5.862118244049553" z="960.790029879781855"/>
             </instance>
-            <instance id="8">
+            <instance id="4">
                 <location x="221.509691364229042" y="8.354161607066185" z="456.080749921845552"/>
             </instance>
-            <instance id="9">
-                <location x="223.878546116847872" y="8.544115926080135" z="495.13099327533871"/>
-            </instance>
         </population>
-        <population id="pop_l2b" component="CELL_HH_simple_L2Basket" size="1" type="populationList">
+        <population id="pop_l2b" component="CELL_HH_simple_L2Basket" size="5" type="populationList">
             <property tag="color" value="1 0.4 0.4"/>
             <property tag="region" value="L2"/>
             <instance id="0">
+                <location x="223.878546116847872" y="1008.544115926080167" z="495.13099327533871"/>
+            </instance>
+            <instance id="1">
                 <location x="732.271924855564748" y="1006.873750670838263" z="982.342656893054141"/>
             </instance>
+            <instance id="2">
+                <location x="793.662765621112612" y="1006.163819495653797" z="265.026359040265618"/>
+            </instance>
+            <instance id="3">
+                <location x="737.284624088966552" y="1007.000094462964398" z="625.370593182604466"/>
+            </instance>
+            <instance id="4">
+                <location x="343.204751494058485" y="1002.941618757495121" z="405.281412645201328"/>
+            </instance>
         </population>
-        <population id="pop_l5b" component="CELL_HH_simple_L5Basket" size="10" type="populationList">
+        <population id="pop_l5b" component="CELL_HH_simple_L5Basket" size="5" type="populationList">
             <property tag="color" value="0.8 1 0.8"/>
             <property tag="region" value="L5"/>
             <instance id="0">
-                <location x="793.662765621112612" y="6.163819495653753" z="265.026359040265618"/>
-            </instance>
-            <instance id="1">
-                <location x="737.284624088966552" y="7.000094462964426" z="625.370593182604466"/>
-            </instance>
-            <instance id="2">
-                <location x="343.204751494058485" y="2.941618757495121" z="405.281412645201328"/>
-            </instance>
-            <instance id="3">
                 <location x="548.208585065628995" y="7.833795459915925" z="249.202519081094692"/>
             </instance>
-            <instance id="4">
+            <instance id="1">
                 <location x="137.371781429611588" y="8.118048303678927" z="313.998993885016148"/>
             </instance>
-            <instance id="5">
+            <instance id="2">
                 <location x="21.729740285133193" y="8.446580400133747" z="63.30806788031262"/>
             </instance>
-            <instance id="6">
+            <instance id="3">
                 <location x="82.043076821639914" y="4.034482804263753" z="322.577310665868254"/>
             </instance>
-            <instance id="7">
+            <instance id="4">
                 <location x="104.926817498631635" y="2.93950011697187" z="571.053748350003389"/>
-            </instance>
-            <instance id="8">
-                <location x="803.214600975745157" y="0.173603064228426" z="948.803882290059505"/>
-            </instance>
-            <instance id="9">
-                <location x="112.957922746158573" y="4.29240539816211" z="648.431259389415459"/>
             </instance>
         </population>
         <projection id="proj_p5_b5" presynapticPopulation="pop_l5p" postsynapticPopulation="pop_l5b" synapse="AMPA">
-            <connectionWD id="0" preCellId="../pop_l5p/1/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/4/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="1" preCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="2" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/3/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="3" preCellId="../pop_l5p/5/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/2/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="4" preCellId="../pop_l5p/6/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/7/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="5" preCellId="../pop_l5p/6/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/8/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="6" preCellId="../pop_l5p/8/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/9/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
-            <connectionWD id="7" preCellId="../pop_l5p/9/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/8/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="0" preCellId="../pop_l5p/0/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/1/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" postCellId="../pop_l5b/0/CELL_HH_simple_L5Basket" weight="0.001" delay="0ms"/>
         </projection>
-        <inputList id="stim_pop_l2p" population="pop_l2p" component="i_clamp1">
+        <projection id="proj_p2_p5" presynapticPopulation="pop_l2p" postsynapticPopulation="pop_l5p" synapse="L5Pyr_AMPA">
+            <connectionWD id="0" preCellId="../pop_l2p/0/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/2/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+            <connectionWD id="1" preCellId="../pop_l2p/4/CELL_HH_reduced_L2Pyr" postCellId="../pop_l5p/4/CELL_HH_reduced_L5Pyr" weight="0.001" delay="0ms"/>
+        </projection>
+        <inputList id="stim_input_offset_curr_l2p" population="pop_l2p" component="input_offset_curr_l2p">
             <input id="0" target="../pop_l2p/0/CELL_HH_reduced_L2Pyr" destination="synapses"/>
+            <input id="1" target="../pop_l2p/1/CELL_HH_reduced_L2Pyr" destination="synapses"/>
+            <input id="2" target="../pop_l2p/2/CELL_HH_reduced_L2Pyr" destination="synapses"/>
+            <input id="3" target="../pop_l2p/3/CELL_HH_reduced_L2Pyr" destination="synapses"/>
+            <input id="4" target="../pop_l2p/4/CELL_HH_reduced_L2Pyr" destination="synapses"/>
         </inputList>
-        <inputList id="stim_pop_l5p" population="pop_l5p" component="poissonFiringSyn100Hz">
-            <inputW id="0" target="../pop_l5p/0/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="1" target="../pop_l5p/1/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="2" target="../pop_l5p/2/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="3" target="../pop_l5p/3/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="4" target="../pop_l5p/4/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="5" target="../pop_l5p/5/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="6" target="../pop_l5p/6/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="7" target="../pop_l5p/7/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="8" target="../pop_l5p/8/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
-            <inputW id="9" target="../pop_l5p/9/CELL_HH_reduced_L5Pyr" destination="synapses" weight="0.01"/>
+        <inputList id="stim_pop_l2p" population="pop_l2p" component="poissonFiringSyn100Hz">
+            <inputW id="0" target="../pop_l2p/0/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="1" target="../pop_l2p/1/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="2" target="../pop_l2p/2/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="3" target="../pop_l2p/3/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
+            <inputW id="4" target="../pop_l2p/4/CELL_HH_reduced_L2Pyr" destination="synapses" weight="0.01"/>
         </inputList>
     </network>
 </neuroml>
