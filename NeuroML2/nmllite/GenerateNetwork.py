@@ -77,8 +77,6 @@ def generate(ref, np2=0, np5=0, nb2=0, nb5=0, recordTraces='*'):
 
 
 
-
-
     net.inputs.append(Input(id='stim_%s'%pop_l2p.id,
                             input_source=input_source_poisson100.id,
                             population=pop_l2p.id,
@@ -143,6 +141,8 @@ import sys
 if '-single' in sys.argv:
     sim, net = generate('Pyr5s',np5=1)
 else:
-    sim, net = generate('BigNet',np2=5,np5=5,nb2=5,nb5=5,recordTraces='[0,1,3]')
+    sim, net = generate('BiggerNet',np2=100,np5=100,nb2=35,nb5=35,recordTraces='[0,1,2]')
+
+    sim, net = generate('BigNet',np2=5,np5=5,nb2=5,nb5=5,recordTraces='[0,1,2]')
 
 check_to_generate_or_run(sys.argv, sim)

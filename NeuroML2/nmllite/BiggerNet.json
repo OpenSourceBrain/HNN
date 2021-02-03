@@ -1,0 +1,295 @@
+{
+    "BiggerNet": {
+        "version": "NeuroMLlite v0.2.2",
+        "seed": 7890,
+        "temperature": 32.0,
+        "parameters": {
+            "np2": 100,
+            "np5": 100,
+            "nb2": 35,
+            "nb5": 35,
+            "offset_curr_l2p": -0.05,
+            "weight_bkg_l2p": 0.01,
+            "weight_bkg_l5p": 0.01,
+            "weight_l2p_l2b": 0.001,
+            "weight_l2b_l2p": 0.001,
+            "weight_l2p_l5p": 0.001,
+            "weight_l2p_l5b": 0.001,
+            "weight_l2b_l5p": 0.001,
+            "weight_l5p_l5b": 0.001,
+            "weight_l5b_l5p": 0.001
+        },
+        "notes": "Example: BiggerNet...",
+        "cells": [
+            {
+                "CELL_HH_reduced_L2Pyr": {
+                    "neuroml2_source_file": "../CELL_HH_reduced_L2Pyr.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_reduced_L5Pyr": {
+                    "neuroml2_source_file": "../CELL_HH_reduced_L5Pyr.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_simple_L2Basket": {
+                    "neuroml2_source_file": "../CELL_HH_simple_L2Basket.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_simple_L5Basket": {
+                    "neuroml2_source_file": "../CELL_HH_simple_L5Basket.cell.nml"
+                }
+            }
+        ],
+        "synapses": [
+            {
+                "AMPA": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            },
+            {
+                "L2Pyr_GABAA": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            },
+            {
+                "L2Pyr_GABAB": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            },
+            {
+                "L5Pyr_AMPA": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            },
+            {
+                "L5Pyr_GABAA": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            },
+            {
+                "L5Pyr_GABAB": {
+                    "neuroml2_source_file": "../HNN_Synapses.nml"
+                }
+            }
+        ],
+        "input_sources": [
+            {
+                "poissonFiringSyn100Hz": {
+                    "neuroml2_source_file": "../inputs.nml"
+                }
+            },
+            {
+                "input_offset_curr_l2p": {
+                    "pynn_input": "DCSource",
+                    "parameters": {
+                        "amplitude": "offset_curr_l2p",
+                        "start": 0,
+                        "stop": 1000000000.0
+                    }
+                }
+            }
+        ],
+        "regions": [
+            {
+                "L2": {
+                    "x": 0.0,
+                    "y": 1000.0,
+                    "z": 0.0,
+                    "width": 1000.0,
+                    "height": 10.0,
+                    "depth": 1000.0
+                }
+            },
+            {
+                "L5": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "width": 1000.0,
+                    "height": 10.0,
+                    "depth": 1000.0
+                }
+            }
+        ],
+        "populations": [
+            {
+                "pop_l2p": {
+                    "size": "np2",
+                    "component": "CELL_HH_reduced_L2Pyr",
+                    "properties": {
+                        "color": "0.6 0 0"
+                    },
+                    "random_layout": {
+                        "region": "L2"
+                    }
+                }
+            },
+            {
+                "pop_l5p": {
+                    "size": "np5",
+                    "component": "CELL_HH_reduced_L5Pyr",
+                    "properties": {
+                        "color": "0 0.4 0"
+                    },
+                    "random_layout": {
+                        "region": "L5"
+                    }
+                }
+            },
+            {
+                "pop_l2b": {
+                    "size": "nb2",
+                    "component": "CELL_HH_simple_L2Basket",
+                    "properties": {
+                        "color": "1 0.4 0.4"
+                    },
+                    "random_layout": {
+                        "region": "L2"
+                    }
+                }
+            },
+            {
+                "pop_l5b": {
+                    "size": "nb5",
+                    "component": "CELL_HH_simple_L5Basket",
+                    "properties": {
+                        "color": "0.8 1 0.8"
+                    },
+                    "random_layout": {
+                        "region": "L5"
+                    }
+                }
+            }
+        ],
+        "projections": [
+            {
+                "proj_l2p_l2b_AMPA": {
+                    "presynaptic": "pop_l2p",
+                    "postsynaptic": "pop_l2b",
+                    "synapse": "AMPA",
+                    "delay": 0,
+                    "weight": "weight_l2p_l2b",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l2b_l2p_L2Pyr_GABAA": {
+                    "presynaptic": "pop_l2b",
+                    "postsynaptic": "pop_l2p",
+                    "synapse": "L2Pyr_GABAA",
+                    "delay": 0,
+                    "weight": "weight_l2b_l2p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l2b_l2p_L2Pyr_GABAB": {
+                    "presynaptic": "pop_l2b",
+                    "postsynaptic": "pop_l2p",
+                    "synapse": "L2Pyr_GABAB",
+                    "delay": 0,
+                    "weight": "weight_l2b_l2p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l2p_l5p_L5Pyr_AMPA": {
+                    "presynaptic": "pop_l2p",
+                    "postsynaptic": "pop_l5p",
+                    "synapse": "L5Pyr_AMPA",
+                    "delay": 0,
+                    "weight": "weight_l2p_l5p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l2p_l5b_AMPA": {
+                    "presynaptic": "pop_l2p",
+                    "postsynaptic": "pop_l5b",
+                    "synapse": "AMPA",
+                    "delay": 0,
+                    "weight": "weight_l2p_l5b",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l2b_l5p_L5Pyr_GABAA": {
+                    "presynaptic": "pop_l2b",
+                    "postsynaptic": "pop_l5p",
+                    "synapse": "L5Pyr_GABAA",
+                    "delay": 0,
+                    "weight": "weight_l2b_l5p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l5p_l5b_AMPA": {
+                    "presynaptic": "pop_l5p",
+                    "postsynaptic": "pop_l5b",
+                    "synapse": "AMPA",
+                    "delay": 0,
+                    "weight": "weight_l5p_l5b",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l5b_l5p_L5Pyr_GABAA": {
+                    "presynaptic": "pop_l5b",
+                    "postsynaptic": "pop_l5p",
+                    "synapse": "L5Pyr_GABAA",
+                    "delay": 0,
+                    "weight": "weight_l5b_l5p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            },
+            {
+                "proj_l5b_l5p_L5Pyr_GABAB": {
+                    "presynaptic": "pop_l5b",
+                    "postsynaptic": "pop_l5p",
+                    "synapse": "L5Pyr_GABAB",
+                    "delay": 0,
+                    "weight": "weight_l5b_l5p",
+                    "random_connectivity": {
+                        "probability": 0.8
+                    }
+                }
+            }
+        ],
+        "inputs": [
+            {
+                "stim_pop_l2p": {
+                    "input_source": "poissonFiringSyn100Hz",
+                    "population": "pop_l2p",
+                    "percentage": 100.0,
+                    "weight": "weight_bkg_l2p"
+                }
+            },
+            {
+                "stim_pop_l5p": {
+                    "input_source": "poissonFiringSyn100Hz",
+                    "population": "pop_l5p",
+                    "percentage": 100.0,
+                    "weight": "weight_bkg_l5p"
+                }
+            }
+        ]
+    }
+}
