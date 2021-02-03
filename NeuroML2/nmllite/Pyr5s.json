@@ -1,0 +1,110 @@
+{
+    "Pyr5s": {
+        "version": "NeuroMLlite v0.2.2",
+        "seed": 7890,
+        "temperature": 32.0,
+        "parameters": {
+            "np2": 1,
+            "np5": 0,
+            "nb2": 0,
+            "nb5": 0,
+            "input_amp1": 0.3,
+            "weight_bkg": 0.01
+        },
+        "notes": "Example: Pyr5s...",
+        "cells": [
+            {
+                "CELL_HH_reduced_L2Pyr": {
+                    "neuroml2_source_file": "../CELL_HH_reduced_L2Pyr.cell.nml"
+                }
+            },
+            {
+                "CELL_HH_reduced_L5Pyr": {
+                    "neuroml2_source_file": "../CELL_HH_reduced_L5Pyr.cell.nml"
+                }
+            }
+        ],
+        "input_sources": [
+            {
+                "poissonFiringSyn100Hz": {
+                    "neuroml2_source_file": "../inputs.nml"
+                }
+            },
+            {
+                "i_clamp1": {
+                    "pynn_input": "DCSource",
+                    "parameters": {
+                        "amplitude": "input_amp1",
+                        "start": 100,
+                        "stop": 300
+                    }
+                }
+            }
+        ],
+        "regions": [
+            {
+                "L2": {
+                    "x": 0.0,
+                    "y": 1000.0,
+                    "z": 0.0,
+                    "width": 1000.0,
+                    "height": 10.0,
+                    "depth": 1000.0
+                }
+            },
+            {
+                "L5": {
+                    "x": 0.0,
+                    "y": 0.0,
+                    "z": 0.0,
+                    "width": 1000.0,
+                    "height": 10.0,
+                    "depth": 1000.0
+                }
+            }
+        ],
+        "populations": [
+            {
+                "pop_l2p": {
+                    "size": "np2",
+                    "component": "CELL_HH_reduced_L2Pyr",
+                    "properties": {
+                        "color": ".7 0 0"
+                    },
+                    "random_layout": {
+                        "region": "L2"
+                    }
+                }
+            },
+            {
+                "pop_l5p": {
+                    "size": "np5",
+                    "component": "CELL_HH_reduced_L5Pyr",
+                    "properties": {
+                        "color": "0 0.7 0"
+                    },
+                    "random_layout": {
+                        "region": "L5"
+                    }
+                }
+            }
+        ],
+        "inputs": [
+            {
+                "stim_pop_l2p": {
+                    "input_source": "i_clamp1",
+                    "population": "pop_l2p",
+                    "percentage": 100.0
+                }
+            },
+            {
+                "stim_pop_l5p": {
+                    "input_source": "poissonFiringSyn100Hz",
+                    "population": "pop_l5p",
+                    "percentage": 100.0,
+                    "weight": "weight_bkg"
+                }
+            }
+        ]
+    }
+}

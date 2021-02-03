@@ -22,3 +22,6 @@ report.*.txt
 /NeuroML2/nmllite/leak_hh.channel.nml
 /NeuroML2/nmllite/na_hh.channel.nml
 *_netpyne.py
+/NeuroML2/nmllite/BigNet.net.png
+/NeuroML2/nmllite/Sim*.json
+/NeuroML2/nmllite/LEMS*.xml

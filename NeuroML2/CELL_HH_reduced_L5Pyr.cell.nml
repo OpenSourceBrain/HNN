@@ -135,14 +135,6 @@
                 <channelDensity id="k_basal_3_group" ionChannel="k_hh" condDensity="0.01 S_per_cm2" erev="-77 mV" ion="k"/>
                 <channelDensity id="na_basal_3_group" ionChannel="na_hh" condDensity="0.14 S_per_cm2" erev="50 mV" ion="na"/>
                 <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
-                <spikeThresh value="10 mV"/>
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="soma_group"/>
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_trunk_group"/>
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="apical_1_group"/>
@@ -152,14 +144,6 @@
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_1_group"/>
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_2_group"/>
                 <specificCapacitance value="0.85 uF_per_cm2" segmentGroup="basal_3_group"/>
-                <initMembPotential value="-72.0 mV"/>
-                <initMembPotential value="-72.0 mV"/>
-                <initMembPotential value="-71.32 mV"/>
-                <initMembPotential value="-69.08 mV"/>
-                <initMembPotential value="-72.0 mV"/>
-                <initMembPotential value="-67.3 mV"/>
-                <initMembPotential value="-72.0 mV"/>
-                <initMembPotential value="-72.0 mV"/>
                 <initMembPotential value="-72.0 mV"/>
             </membraneProperties>
             <intracellularProperties>

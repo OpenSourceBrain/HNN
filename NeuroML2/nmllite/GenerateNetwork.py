@@ -101,8 +101,9 @@ from neuromllite.NetworkGenerator import check_to_generate_or_run
 import sys
 
 
-sim, net = generate('BigNet',np2=1,np5=6)
-
-#sim, net = generate('Pyr5s',np2=1)
+if '-single' in sys.argv:
+    sim, net = generate('Pyr5s',np2=1)
+else:
+    sim, net = generate('BigNet',np2=1,np5=6)
 
 check_to_generate_or_run(sys.argv, sim)
