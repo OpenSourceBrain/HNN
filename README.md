@@ -1,3 +1,5 @@
+[![Continuous build using OMV](https://github.com/OpenSourceBrain/HNN/actions/workflows/omv-ci.yml/badge.svg)](https://github.com/OpenSourceBrain/HNN/actions/workflows/omv-ci.yml)
+
 # Human Neocortical Neurosolver -> NeuroML
 
 Conversion to NeuroML of the Human Neocortical Neurosolver model. 
